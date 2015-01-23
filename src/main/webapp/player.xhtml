@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+ 
+ 
+<h:head>
+	<h:outputStylesheet library="css" name="http://yui.yahooapis.com/pure/0.5.0/pure-min.css"  />
+	<h:outputStylesheet library="css" name="main.css"  /> 
+</h:head>
+<h:body>
+	<div class="container">
+	
+    	<div class="logo">
+    		ETS2MP Tracker
+    	</div>
+    	    <div class="status">
+				<c:choose>
+	   				<c:when test="${ets2mpAPI.value == true}"> 
+	     		    	<h:graphicImage value="/resources/img/online.png" />
+	 			    </c:when>
+	    			<c:otherwise>
+	        			<h:graphicImage value="/resources/img/offline.png" />
+	        		</c:otherwise>
+				</c:choose>
+					ETS2MP API
+				<c:choose>
+				    <c:when test="${steamAPI.value == true}"> 
+				         <h:graphicImage value="/resources/img/online.png" />
+				    </c:when>
+				    <c:otherwise>
+				        <h:graphicImage value="/resources/img/offline.png" />
+				    </c:otherwise>
+				</c:choose>
+		    	Steam API &nbsp;&nbsp;
+		    </div>
+    	
+    	    <div class="nav">
+	    	    <a href="index.xhtml">Player</a> | <a href="servers.xhtml">Servers</a> | <a href="stats.xhtml">Stats</a> | 
+	    	    <a href="tops.xhtml">Tops</a> | <a href="about.xhtml">About</a>
+    	    </div>
+    	<div class="main "> 
+    	
+			<h2>Player stats</h2>
+    		<c:if test="${empty PlayerBean.player}">
+				Sorry there is no user with this ID.
+			</c:if>
+			<c:if test="${not empty PlayerBean.player}">
+				<table>
+					<tr>
+						<td>
+	    					<img src="${PlayerBean.player.getAvatarURL() }"/> <br/>
+	    				</td>
+						<td>
+							Name: <b><i> ${PlayerBean.player.getName() }</i></b><br/>
+							ID : <b><i>${PlayerBean.player.getId() }</i></b><br/>
+							Member since : <b><i>${PlayerBean.player.getJoinDate()}</i></b> <br/>
+							Steam profile: <b><i><a href="http://steamcommunity.com/profiles/${PlayerBean.player.getSteamID64() }" >Profile</a></i></b><br/>
+							Role: <b><i>${PlayerBean.player.getGroupName() }</i></b> <br/>
+							
+							Last seen online : <b><i>${PlayerBean.player.getLastLogOff() }</i></b> <br/>
+							Played: <b><i>${PlayerBean.player.getPlaytime() }</i></b> <br/>
+							Steam name : <b><i>${PlayerBean.player.getSteamName() }</i></b> <br/>
+							State : <b><i>${PlayerBean.player.getPersonaState() }</i></b> 
+						</td>
+					</tr>
+				</table>
+		</c:if>
+    	
+		</div>
+		<div class="footer">
+			<i>ETS2MP Tracker created by Jakub Homlala</i></div>
+	</div>
+ 
+</h:body>
+</html>
