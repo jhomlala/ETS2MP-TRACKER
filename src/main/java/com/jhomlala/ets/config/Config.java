@@ -6,11 +6,7 @@ import javax.sql.DataSource;
 
 public class Config 
 {
-	/*private String host = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-	private String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
-	private String login = "adminbJmPtkQ";
-	private String password = "td4ZhyajMMh4";
-	private String dbname = "ets2mp";*/
+
 	
 	private static Date lastServerUpdate;
 	private static Date lastPlayerUpdate;
